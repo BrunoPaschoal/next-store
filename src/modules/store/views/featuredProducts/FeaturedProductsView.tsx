@@ -3,9 +3,10 @@ import { ProductCard } from "@/components/Cards/ProductCard";
 import { InputSearch } from "@/components/Inputs/InputSearch";
 import { FilterTag } from "@/components/Others/FilterTags";
 import { MainTitle } from "@/components/Others/MainTitle";
+import { Product } from "../../services/featuredProductsService";
 
 interface FeaturedProductsViewProps {
-  productsList: any[];
+  productsList: Product[];
   onClickProduct: (productId: number) => void;
 }
 
@@ -31,12 +32,8 @@ export const FeaturedProductsView = ({
         </div>
       </section>
       <section className="mt-12 flex flex-wrap gap-4">
-        {productsList?.map((item, index) => (
-          <ProductCard
-            key={index}
-            productId={item.id}
-            onClick={onClickProduct}
-          />
+        {productsList?.map((product, index) => (
+          <ProductCard key={index} product={product} onClick={onClickProduct} />
         ))}
       </section>
     </section>
