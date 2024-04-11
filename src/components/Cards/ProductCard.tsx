@@ -11,7 +11,7 @@ export const ProductCard = ({ onClick, product }: ProductCardProps) => {
   return (
     <div
       onClick={() => onClick(product.id)}
-      className="h-[400px] w-[100%] min-w-[200px] max-w-[236px] flex-1 rounded-xl overflow-hidden cursor-pointer border"
+      className="h-[400px] w-[100%] min-w-[200px] max-w-[236px] flex-1 rounded-xl overflow-hidden cursor-pointer border active:opacity-80"
     >
       <div>
         <Image

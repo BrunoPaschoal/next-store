@@ -21,7 +21,7 @@ export const ProductsDetailsView = ({
   sizeSelected,
 }: ProductsDetailsView) => {
   return (
-    <section className="flex-col mb-80">
+    <section className="flex-col mb-20">
       <div className="flex text-slate-700 flex-col md:flex-row">
         <section className="flex-1">
           <Image

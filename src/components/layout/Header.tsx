@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Logo from "@/assets/imgs/logo.svg";
+import cart from "@/assets/icons/cart-icon.svg";
 
 export const Header = () => {
   return (
@@ -12,8 +13,8 @@ export const Header = () => {
       </section>
       <section className="px-14 py-4 w-full flex items-center justify-center bg-slate-100 shadow-sm shadow-slate-300">
         <div className="w-full max-w-[1246px] flex items-center justify-between text-slate-800 text-sm">
-          <Image src={Logo} alt="Logo" width={50} />
-          <span>Ícone</span>
+          <Image src={Logo} alt="Logo" width={50} className="cursor-pointer" />
+          <Image src={cart} alt="cart" width={30} className="cursor-pointer" />
         </div>
       </section>
     </header>

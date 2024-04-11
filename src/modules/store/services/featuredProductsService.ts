@@ -15,9 +15,25 @@ export const featuredProductsService = () => {
     return productsList;
   };
 
+  const getSizeOptions = async (): Promise<string[]> => {
+    const allSizes = productsList.reduce(
+      (sizes, product) => [...sizes, ...product.sizes],
+      [] as string[]
+    );
+    return [...new Set(allSizes)];
+  };
+
+  const getColorOptions = async (): Promise<string[]> => {
+    const allColors = productsList.reduce(
+      (colors, product) => [...colors, ...product.colors],
+      [] as string[]
+    );
+    return [...new Set(allColors)];
+  };
+
   const getProductById = async (id: number): Promise<Product | undefined> => {
     const product = productsList.find((product) => product.id === id);
     return product;
   };
-  return { getProducts, getProductById };
+  return { getProducts, getProductById, getSizeOptions, getColorOptions };
 };
