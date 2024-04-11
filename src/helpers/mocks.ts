@@ -37,7 +37,7 @@ export const productsList = [
     description:
       "A Camiseta Street Trefoil traz o espírito urbano para o seu guarda-roupa. Seu design contemporâneo, junto ao emblemático logo Trefoil, oferece estilo e identidade. Feita para quem valoriza conforto e sustentabilidade.",
     price: 155.0,
-    colors: ["##5F3F3F", "#FFD700"],
+    colors: ["#5A3C3F", "#000"],
     sizes: ["P", "M", "G"],
     imgUrl:
       "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/6fe28022ac7d490fab2a83d9d68daa45_9366/Camiseta_Adicolor_Classics_3-Stripes_Marrom_IM2077_21_model.jpg",
@@ -48,7 +48,7 @@ export const productsList = [
     description:
       "Ideal para os atletas de plantão, a Camiseta Trefoil Sport combina funcionalidade e estilo. Com tecnologia que absorve a umidade, esta camiseta te mantém seco e confortável durante os treinos, enquanto promove a sustentabilidade.",
     price: 180.5,
-    colors: ["##FD4450", "#0000FF"],
+    colors: ["#FD4450", "#0000FF"],
     sizes: ["P", "M", "GG"],
     imgUrl:
       "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/9c96e74d9d9841f1aa99d434c8344b53_9366/Camiseta_Manchester_United_Essentials_Trefoil_Vermelho_IK8705_21_model.jpg",
@@ -99,3 +99,6 @@ export const productsList = [
     id: 10,
   },
 ];
+
+export const shippingInfo =
+  "Estamos comprometidos em entregar seus produtos de maneira rápida e eficiente. Nossos produtos são enviados diretamente do nosso armazém para o seu endereço em todo o Brasil. \nO prazo de entrega varia de acordo com a localização do destinatário e o método de envio escolhido. Normalmente, nossos clientes recebem seus pedidos entre 3 a 7 dias úteis após a confirmação do pagamento.";
