@@ -1,12 +1,12 @@
 import { HeroBanner } from "@/components/Banners/HeroBanner";
 import { ProductCard } from "@/components/Cards/ProductCard";
 import { InputSearch } from "@/components/Inputs/InputSearch";
-import { FilterTag } from "@/components/Others/FilterTags";
 import { MainTitle } from "@/components/Others/MainTitle";
 import { Product } from "../../services/featuredProductsService";
 import { ProductSizeTag } from "@/components/Others/ProductSizeTag";
 import { ProductColorTag } from "@/components/Others/ProductColorTag";
 import { Dispatch, SetStateAction } from "react";
+import { EmptyIndicator } from "@/components/Others/EmptyIndicator";
 
 interface FeaturedProductsViewProps {
   productsList: Product[];
@@ -76,11 +76,24 @@ export const FeaturedProductsView = ({
           <InputSearch searchText={searchText} setSearchText={setSearchText} />
         </div>
       </section>
-      <section className="mt-12 flex flex-wrap gap-4">
-        {productsList?.map((product, index) => (
-          <ProductCard key={index} product={product} onClick={onClickProduct} />
-        ))}
-      </section>
+
+      {!!productsList.length && (
+        <section className="mt-12 flex flex-wrap gap-4">
+          {productsList?.map((product, index) => (
+            <ProductCard
+              key={index}
+              product={product}
+              onClick={onClickProduct}
+            />
+          ))}
+        </section>
+      )}
+
+      {!productsList.length && (
+        <section className="mt-12 flex flex-wrap gap-4">
+          <EmptyIndicator />
+        </section>
+      )}
     </section>
   );
 };
