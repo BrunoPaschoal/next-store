@@ -78,7 +78,7 @@ export const FeaturedProductsView = ({
       </section>
 
       {!!productsList.length && (
-        <section className="mt-12 flex flex-wrap gap-4">
+        <section className="mt-12 flex flex-wrap gap-4 justify-center md:justify-start">
           {productsList?.map((product, index) => (
             <ProductCard
               key={index}
