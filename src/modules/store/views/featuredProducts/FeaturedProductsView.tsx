@@ -39,13 +39,13 @@ export const FeaturedProductsView = ({
       <section className="mt-16">
         <MainTitle title="Produtos em Destaque" />
       </section>
-      <section className="flex justify-between border-b items-end">
+      <section className="flex flex-col md:flex-row md:items-end justify-between border-b items-start">
         <div className="mt-6 flex flex-col gap-4 mb-3 flex-1">
           <span className="font-medium">Filtros</span>
 
           <div>
             <span className="text-sm font-thin">Cor</span>
-            <div className="flex mt-1 opacity-90">
+            <div className="flex mt-1 opacity-90 flex-wrap">
               {colorsFilterOptions?.map((color, index) => (
                 <ProductColorTag
                   color={color}
@@ -72,7 +72,7 @@ export const FeaturedProductsView = ({
             </div>
           </div>
         </div>
-        <div className=" flex mb-3 flex-1 justify-end">
+        <div className="flex mb-3 mt-4 w-full md:w-72 justify-end">
           <InputSearch searchText={searchText} setSearchText={setSearchText} />
         </div>
       </section>

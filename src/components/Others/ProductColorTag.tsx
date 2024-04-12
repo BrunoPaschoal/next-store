@@ -16,7 +16,7 @@ export const ProductColorTag = ({
       }`}
     >
       <div
-        className={`h-6 w-6 rounded-full opacity-90 cursor-pointer`}
+        className={`h-6 w-6 rounded-full cursor-pointer`}
         style={{ backgroundColor: color }}
         onClick={() => selectColor(color)}
       ></div>

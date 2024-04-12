@@ -19,7 +19,7 @@ export default function RootLayout({
     <html lang="pt-br">
       <body className={(inter.className, "bg-slate-100")}>
         <Header />
-        <main className="px-14 flex justify-center">
+        <main className="px-6 md:px-14 flex justify-center">
           <div className="w-full max-w-[1246px]">{children}</div>
         </main>
       </body>
