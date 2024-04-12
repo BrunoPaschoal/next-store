@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { FeaturedProductsView } from "./FeaturedProductsView";
 import { useRouter } from "next/navigation";
 import {
@@ -17,6 +17,7 @@ export const FeaturedProducts = () => {
   const [colorOptions, setColorOptions] = useState<string[] | undefined>();
   const [sizeSelected, setSizeSelected] = useState<string | undefined>();
   const [colorSelected, setColorSelected] = useState<string | undefined>();
+  const [searchText, setSearchText] = useState<string | undefined>();
 
   const onClickProduct = (productId: number) => {
     router.push(`/productDetails/${productId}`);
@@ -29,10 +30,15 @@ export const FeaturedProducts = () => {
     setColorOptions(colorOptionsReponse);
   };
 
-  const getAllProducts = async () => {
-    const productsResponse = await getProducts();
+  const getAllProducts = useCallback(async () => {
+    const productsResponse = await getProducts({
+      color: colorSelected,
+      size: sizeSelected,
+      title: searchText,
+    });
+
     setProducts(productsResponse);
-  };
+  }, [colorSelected, sizeSelected, searchText]);
 
   const onSelectColor = (color: string) => {
     setColorSelected(color);
@@ -44,7 +50,7 @@ export const FeaturedProducts = () => {
 
   useEffect(() => {
     getAllProducts();
-  }, []);
+  }, [getAllProducts]);
 
   useEffect(() => {
     getFilterOptions();
@@ -60,6 +66,8 @@ export const FeaturedProducts = () => {
       selectSize={onSelectSize}
       sizesFilterOptions={sizeOptions}
       colorsFilterOptions={colorOptions}
+      searchText={searchText}
+      setSearchText={setSearchText}
     />
   );
 };

@@ -24,12 +24,14 @@ export const ProductsDetailsView = ({
     <section className="flex-col mb-20">
       <div className="flex text-slate-700 flex-col md:flex-row">
         <section className="flex-1">
-          <Image
-            src={product?.imgUrl}
-            alt={product?.title}
-            width={622}
-            height={622}
-          />
+          {!!product?.imgUrl && (
+            <Image
+              src={product?.imgUrl}
+              alt={product?.title}
+              width={622}
+              height={622}
+            />
+          )}
         </section>
         <section className="flex-1 border">
           <div className="px-6 py-6 flex flex-col gap-4">

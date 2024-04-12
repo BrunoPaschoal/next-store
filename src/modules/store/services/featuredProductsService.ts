@@ -10,9 +10,35 @@ export type Product = {
   id: number;
 };
 
+type Filters = {
+  color?: string;
+  size?: string;
+  title?: string;
+};
+
 export const featuredProductsService = () => {
-  const getProducts = async (): Promise<Product[]> => {
-    return productsList;
+  const getProducts = async (filters: Filters = {}): Promise<Product[]> => {
+    let filteredProducts = productsList;
+
+    if (filters.color) {
+      filteredProducts = filteredProducts.filter((product) =>
+        product.colors.includes(filters.color!)
+      );
+    }
+
+    if (filters.size) {
+      filteredProducts = filteredProducts.filter((product) =>
+        product.sizes.includes(filters.size!)
+      );
+    }
+
+    if (filters.title) {
+      filteredProducts = filteredProducts.filter((product) =>
+        product.title.toLowerCase().includes(filters.title!?.toLowerCase())
+      );
+    }
+
+    return filteredProducts;
   };
 
   const getSizeOptions = async (): Promise<string[]> => {

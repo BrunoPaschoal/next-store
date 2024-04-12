@@ -6,6 +6,7 @@ import { MainTitle } from "@/components/Others/MainTitle";
 import { Product } from "../../services/featuredProductsService";
 import { ProductSizeTag } from "@/components/Others/ProductSizeTag";
 import { ProductColorTag } from "@/components/Others/ProductColorTag";
+import { Dispatch, SetStateAction } from "react";
 
 interface FeaturedProductsViewProps {
   productsList: Product[];
@@ -14,6 +15,8 @@ interface FeaturedProductsViewProps {
   selectColor: (color: string) => void;
   sizeSelected?: string;
   selectSize: (size: string) => void;
+  setSearchText: Dispatch<SetStateAction<string | undefined>>;
+  searchText: string | undefined;
   colorsFilterOptions: string[] | undefined;
   sizesFilterOptions: string[] | undefined;
 }
@@ -27,6 +30,8 @@ export const FeaturedProductsView = ({
   sizeSelected,
   colorsFilterOptions,
   sizesFilterOptions,
+  searchText,
+  setSearchText,
 }: FeaturedProductsViewProps) => {
   return (
     <section className="pb-20">
@@ -68,7 +73,7 @@ export const FeaturedProductsView = ({
           </div>
         </div>
         <div className=" flex mb-3 flex-1 justify-end">
-          <InputSearch />
+          <InputSearch searchText={searchText} setSearchText={setSearchText} />
         </div>
       </section>
       <section className="mt-12 flex flex-wrap gap-4">
