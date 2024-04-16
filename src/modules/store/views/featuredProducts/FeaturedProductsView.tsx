@@ -77,7 +77,7 @@ export const FeaturedProductsView = ({
         </div>
       </section>
 
-      {!!productsList.length && (
+      {!!productsList?.length && (
         <section className="mt-12 flex flex-wrap gap-4 justify-center md:justify-start">
           {productsList?.map((product, index) => (
             <ProductCard
@@ -89,7 +89,7 @@ export const FeaturedProductsView = ({
         </section>
       )}
 
-      {!productsList.length && (
+      {!productsList?.length && (
         <section className="mt-12 flex flex-wrap gap-4">
           <EmptyIndicator />
         </section>
@@ -97,3 +97,7 @@ export const FeaturedProductsView = ({
     </section>
   );
 };
+
+// Pensar em composição para retirar os estados desse componente e passa-los para um componente de nivel mais baixo
+// Implementar API de teste para testar os recursos do Next
+// Pesquisar na documentação a forma correta de revalidar uma requisição para atualizar os dados listados para o cliente.
