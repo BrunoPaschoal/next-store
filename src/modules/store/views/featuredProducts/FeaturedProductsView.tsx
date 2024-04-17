@@ -33,7 +33,6 @@ export const FeaturedProductsView = ({
   searchText,
   setSearchText,
 }: FeaturedProductsViewProps) => {
-  console.log(productsList);
   return (
     <section className="pb-20">
       <HeroBanner />

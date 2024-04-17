@@ -15,6 +15,7 @@ export const ProductDetails = ({ productId }: ProductDetailsProps) => {
 
   const getProduct = async () => {
     const productresponse = await getProductById(+productId);
+    console.log(productresponse);
     setProduct(productresponse);
   };
 

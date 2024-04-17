@@ -10,45 +10,26 @@ export type Product = {
   id: number;
 };
 
-type Filters = {
+export type Filters = {
   color?: string;
   size?: string;
   title?: string;
 };
 
 export const productsService = () => {
-  // const getProducts = async (filters: Filters = {}): Promise<Product[]> => {
-  //   let filteredProducts = productsList;
-
-  //   if (filters.color) {
-  //     filteredProducts = filteredProducts.filter((product) =>
-  //       product.colors.includes(filters.color!)
-  //     );
-  //   }
-
-  //   if (filters.size) {
-  //     filteredProducts = filteredProducts.filter((product) =>
-  //       product.sizes.includes(filters.size!)
-  //     );
-  //   }
-
-  //   if (filters.title) {
-  //     filteredProducts = filteredProducts.filter((product) =>
-  //       product.title.toLowerCase().includes(filters.title!?.toLowerCase())
-  //     );
-  //   }
-
-  //   return filteredProducts;
-  // };
-
   const getProducts = async (filters: Filters = {}): Promise<Product[]> => {
-    const productsResponse = await fetch("/api/products", {
+    let params = "";
+
+    if (filters.color) params += `color=${encodeURIComponent(filters.color)}&`;
+    if (filters.size) params += `size=${filters.size}&`;
+    if (filters.title) params += `title=${encodeURIComponent(filters.title)}&`;
+    if (params.endsWith("&")) params = params.slice(0, -1);
+
+    const productsResponse = await fetch(`/api/products?${params}`, {
       method: "GET",
     });
-
-    const products = await productsResponse.json();
-
-    return products;
+    const { data } = await productsResponse.json();
+    return data;
   };
 
   const getSizeOptions = async (): Promise<string[]> => {
@@ -68,8 +49,12 @@ export const productsService = () => {
   };
 
   const getProductById = async (id: number): Promise<Product | undefined> => {
-    const product = productsList.find((product) => product.id === id);
-    return product;
+    const productsResponse = await fetch(`/api/products?id=${id}`, {
+      method: "GET",
+    });
+    const { data } = (await productsResponse.json()) as { data: Product };
+
+    return data;
   };
   return { getProducts, getProductById, getSizeOptions, getColorOptions };
 };

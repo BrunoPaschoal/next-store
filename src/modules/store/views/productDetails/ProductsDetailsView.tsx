@@ -77,7 +77,7 @@ export const ProductsDetailsView = ({
 
               <div>
                 <span className="text-[2.5rem] font-thin text-green-700">
-                  {product?.price.toLocaleString("pt-BR", {
+                  {product?.price?.toLocaleString("pt-BR", {
                     style: "currency",
                     currency: "BRL",
                   })}
