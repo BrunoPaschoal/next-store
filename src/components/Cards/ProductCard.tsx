@@ -1,16 +1,23 @@
+"use client";
+
 import { Product } from "@/modules/store/services/productsService";
 import Image from "next/image";
 import { ProductSizeTag } from "../Others/ProductSizeTag";
+import { useRouter } from "next/navigation";
 
 interface ProductCardProps {
-  onClick: (productId: number) => void;
   product: Product;
 }
 
-export const ProductCard = ({ onClick, product }: ProductCardProps) => {
+export const ProductCard = ({ product }: ProductCardProps) => {
+  const router = useRouter();
+
+  const onClickProduct = (productId: number) => {
+    router.push(`/productDetails/${productId}`);
+  };
   return (
     <div
-      onClick={() => onClick(product.id)}
+      onClick={() => onClickProduct(product.id)}
       className="h-[400px] w-[100%] min-w-[200px] max-w-[236px] flex-1 rounded-xl overflow-hidden cursor-pointer border active:opacity-80"
     >
       <div>
