@@ -1,4 +1,4 @@
-import { Product } from "@/modules/store/services/featuredProductsService";
+import { Product } from "@/modules/store/services/productsService";
 import Image from "next/image";
 import { ProductSizeTag } from "../Others/ProductSizeTag";
 
@@ -32,7 +32,7 @@ export const ProductCard = ({ onClick, product }: ProductCardProps) => {
         </div>
 
         <div className="flex gap-1 mt-4">
-          {product.sizes.map((size, index) => (
+          {product.sizes?.map((size, index) => (
             <ProductSizeTag key={index} size={size} />
           ))}
         </div>

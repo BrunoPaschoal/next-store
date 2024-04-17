@@ -2,15 +2,11 @@
 import { useCallback, useEffect, useState } from "react";
 import { FeaturedProductsView } from "./FeaturedProductsView";
 import { useRouter } from "next/navigation";
-import {
-  Product,
-  featuredProductsService,
-} from "../../services/featuredProductsService";
+import { Product, productsService } from "../../services/productsService";
 
 export const FeaturedProducts = () => {
   const router = useRouter();
-  const { getProducts, getSizeOptions, getColorOptions } =
-    featuredProductsService();
+  const { getProducts, getSizeOptions, getColorOptions } = productsService();
 
   const [products, setProducts] = useState<Product[]>([]);
   const [sizeOptions, setSizeOptions] = useState<string[] | undefined>();

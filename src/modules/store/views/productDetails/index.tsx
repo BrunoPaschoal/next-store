@@ -1,9 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import {
-  Product,
-  featuredProductsService,
-} from "../../services/featuredProductsService";
+import { Product, productsService } from "../../services/productsService";
 import { ProductsDetailsView } from "./ProductsDetailsView";
 
 interface ProductDetailsProps {
@@ -11,7 +8,7 @@ interface ProductDetailsProps {
 }
 
 export const ProductDetails = ({ productId }: ProductDetailsProps) => {
-  const { getProductById } = featuredProductsService();
+  const { getProductById } = productsService();
   const [product, setProduct] = useState<Product>();
   const [colorSelected, setColorSelected] = useState<string | undefined>();
   const [sizeSelected, setSizeSelected] = useState<string | undefined>();

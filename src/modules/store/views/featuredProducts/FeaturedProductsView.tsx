@@ -2,7 +2,7 @@ import { HeroBanner } from "@/components/Banners/HeroBanner";
 import { ProductCard } from "@/components/Cards/ProductCard";
 import { InputSearch } from "@/components/Inputs/InputSearch";
 import { MainTitle } from "@/components/Others/MainTitle";
-import { Product } from "../../services/featuredProductsService";
+import { Product } from "../../services/productsService";
 import { ProductSizeTag } from "@/components/Others/ProductSizeTag";
 import { ProductColorTag } from "@/components/Others/ProductColorTag";
 import { Dispatch, SetStateAction } from "react";
@@ -33,6 +33,7 @@ export const FeaturedProductsView = ({
   searchText,
   setSearchText,
 }: FeaturedProductsViewProps) => {
+  console.log(productsList);
   return (
     <section className="pb-20">
       <HeroBanner />

@@ -16,29 +16,39 @@ type Filters = {
   title?: string;
 };
 
-export const featuredProductsService = () => {
+export const productsService = () => {
+  // const getProducts = async (filters: Filters = {}): Promise<Product[]> => {
+  //   let filteredProducts = productsList;
+
+  //   if (filters.color) {
+  //     filteredProducts = filteredProducts.filter((product) =>
+  //       product.colors.includes(filters.color!)
+  //     );
+  //   }
+
+  //   if (filters.size) {
+  //     filteredProducts = filteredProducts.filter((product) =>
+  //       product.sizes.includes(filters.size!)
+  //     );
+  //   }
+
+  //   if (filters.title) {
+  //     filteredProducts = filteredProducts.filter((product) =>
+  //       product.title.toLowerCase().includes(filters.title!?.toLowerCase())
+  //     );
+  //   }
+
+  //   return filteredProducts;
+  // };
+
   const getProducts = async (filters: Filters = {}): Promise<Product[]> => {
-    let filteredProducts = productsList;
+    const productsResponse = await fetch("/api/products", {
+      method: "GET",
+    });
 
-    if (filters.color) {
-      filteredProducts = filteredProducts.filter((product) =>
-        product.colors.includes(filters.color!)
-      );
-    }
+    const products = await productsResponse.json();
 
-    if (filters.size) {
-      filteredProducts = filteredProducts.filter((product) =>
-        product.sizes.includes(filters.size!)
-      );
-    }
-
-    if (filters.title) {
-      filteredProducts = filteredProducts.filter((product) =>
-        product.title.toLowerCase().includes(filters.title!?.toLowerCase())
-      );
-    }
-
-    return filteredProducts;
+    return products;
   };
 
   const getSizeOptions = async (): Promise<string[]> => {

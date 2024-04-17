@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Product } from "../../services/featuredProductsService";
+import { Product } from "../../services/productsService";
 import { ProductSizeTag } from "@/components/Others/ProductSizeTag";
 import { ProductColorTag } from "@/components/Others/ProductColorTag";
 import { Button } from "@/components/Buttons/GenericButton";
