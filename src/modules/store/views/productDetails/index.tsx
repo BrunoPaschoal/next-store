@@ -1,41 +1,33 @@
-"use client";
-import { useEffect, useState } from "react";
-import { Product, productsService } from "../../services/productsService";
-import { ProductsDetailsView } from "./ProductsDetailsView";
+import Image from "next/image";
+import { Product } from "../../services/productsService";
+import { shippingInfo } from "@/helpers/mocks";
+import { ProductDetailsCard } from "@/components/Cards/ProductDetailsCard";
 
-interface ProductDetailsProps {
-  productId: string;
+interface ProductsDetailsView {
+  product: Product | undefined;
 }
 
-export const ProductDetails = ({ productId }: ProductDetailsProps) => {
-  const { getProductById } = productsService();
-  const [product, setProduct] = useState<Product>();
-  const [colorSelected, setColorSelected] = useState<string | undefined>();
-  const [sizeSelected, setSizeSelected] = useState<string | undefined>();
-
-  const getProduct = async () => {
-    const productresponse = await getProductById(+productId);
-    setProduct(productresponse);
-  };
-
-  const onSelectColor = (color: string) => {
-    setColorSelected(color);
-  };
-
-  const onSelectSize = (size: string) => {
-    setSizeSelected(size);
-  };
-
-  useEffect(() => {
-    getProduct();
-  }, []);
+export const ProductsDetailsView = ({ product }: ProductsDetailsView) => {
   return (
-    <ProductsDetailsView
-      product={product!}
-      colorSelected={colorSelected}
-      selectColor={onSelectColor}
-      selectSize={onSelectSize}
-      sizeSelected={sizeSelected}
-    />
+    <section className="flex-col mb-20">
+      <div className="flex text-slate-700 flex-col md:flex-row">
+        <section className="flex-1">
+          {!!product?.imgUrl && (
+            <Image
+              src={product?.imgUrl}
+              alt={product?.title}
+              width={622}
+              height={622}
+            />
+          )}
+        </section>
+        <ProductDetailsCard product={product} />
+      </div>
+
+      <div className="mt-8 text-slate-700">
+        <h1 className="font-bold text-xl border-b mb-2">Envio e Entrega</h1>
+        <p className="font-light  text-slate-600">{shippingInfo}</p>
+      </div>
+    </section>
   );
 };

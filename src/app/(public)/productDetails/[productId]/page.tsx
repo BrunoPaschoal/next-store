@@ -1,4 +1,5 @@
-import { ProductDetails } from "@/modules/store/views/productDetails";
+import { productsService } from "@/modules/store/services/productsService";
+import { ProductsDetailsView } from "@/modules/store/views/productDetails";
 
 interface ProductDetailsPageProps {
   params: {
@@ -6,8 +7,13 @@ interface ProductDetailsPageProps {
   };
 }
 
-export default function ProductDetailsPage({
+export default async function ProductDetailsPage({
   params: { productId },
 }: ProductDetailsPageProps) {
-  return <ProductDetails productId={productId} />;
+  const { getProductById } = productsService();
+
+  // Server request
+  const product = await getProductById(+productId);
+
+  return <ProductsDetailsView product={product} />;
 }
