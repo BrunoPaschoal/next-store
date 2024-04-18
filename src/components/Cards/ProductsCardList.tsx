@@ -3,31 +3,41 @@
 import { Product } from "@/modules/store/services/productsService";
 import { EmptyIndicator } from "../Others/EmptyIndicator";
 import { ProductCard } from "./ProductCard";
-import { useState } from "react";
+import { ProductsCardsLoading } from "../LoadingIndicators/ProductsCardsLoading";
 
 interface ProductsCardsListProps {
-  productsInitialList: Product[];
+  productsList: Product[];
+  isLoading: boolean;
+  onClickProduct: (productId: number) => void;
 }
 
 export const ProductsCardsList = ({
-  productsInitialList,
+  productsList,
+  isLoading,
+  onClickProduct,
 }: ProductsCardsListProps) => {
-  const [products, setProducts] = useState(productsInitialList);
+  console.log(isLoading);
   return (
     <>
-      {!!products?.length && (
+      {!!productsList?.length && !isLoading && (
         <section className="mt-12 flex flex-wrap gap-4 justify-center md:justify-start">
-          {products?.map((product, index) => (
-            <ProductCard key={index} product={product} />
+          {productsList?.map((product, index) => (
+            <ProductCard
+              key={index}
+              product={product}
+              onClickProduct={onClickProduct}
+            />
           ))}
         </section>
       )}
 
-      {!products?.length && (
+      {!productsList?.length && !isLoading && (
         <section className="mt-12 flex flex-wrap gap-4">
           <EmptyIndicator />
         </section>
       )}
+
+      {isLoading && <ProductsCardsLoading />}
     </>
   );
 };

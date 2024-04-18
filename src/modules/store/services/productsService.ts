@@ -1,4 +1,6 @@
 import axios from "axios";
+import next from "next";
+import { revalidatePath } from "next/cache";
 
 export type FilterProductsOptionsReponse = {
   sizeOptions: string[];
@@ -29,20 +31,22 @@ export const productsService = () => {
     if (filters.size) params.append("size", filters.size.toString());
     if (filters.title) params.append("title", filters.title);
 
-    const { data } = await axios.get(
+    const productsResponse = await fetch(
       `${process.env.NEXT_PUBLIC_BASE_URL}/products?${params.toString()}`
     );
 
-    return data?.data;
+    const { data } = (await productsResponse.json()) as { data: Product[] };
+
+    return data;
   };
 
   const getProductById = async (id: number): Promise<Product | undefined> => {
-    const productsResponse = await axios.get(
+    const productResponse = await fetch(
       `${process.env.NEXT_PUBLIC_BASE_URL}/products?id=${id}`
     );
-    const { data } = productsResponse;
+    const { data } = (await productResponse.json()) as { data: Product };
 
-    return data.data;
+    return data;
   };
 
   const getFilterOptions = async (): Promise<FilterProductsOptionsReponse> => {

@@ -3,18 +3,13 @@
 import { Product } from "@/modules/store/services/productsService";
 import Image from "next/image";
 import { ProductSizeTag } from "../Others/ProductSizeTag";
-import { useRouter } from "next/navigation";
 
 interface ProductCardProps {
   product: Product;
+  onClickProduct: (productId: number) => void;
 }
 
-export const ProductCard = ({ product }: ProductCardProps) => {
-  const router = useRouter();
-
-  const onClickProduct = (productId: number) => {
-    router.push(`/productDetails/${productId}`);
-  };
+export const ProductCard = ({ product, onClickProduct }: ProductCardProps) => {
   return (
     <div
       onClick={() => onClickProduct(product.id)}

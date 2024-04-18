@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { ProductColorTag } from "../Others/ProductColorTag";
 import { ProductSizeTag } from "../Others/ProductSizeTag";
 import { InputSearch } from "../Inputs/InputSearch";
@@ -8,24 +8,26 @@ import { InputSearch } from "../Inputs/InputSearch";
 interface ProductsFilterProps {
   colorsFilterOptions: string[] | undefined;
   sizesFilterOptions: string[] | undefined;
+  setSizeSelected: Dispatch<SetStateAction<string | undefined>>;
+  sizeSelected: string | undefined;
+  setColorSelected: Dispatch<SetStateAction<string | undefined>>;
+  colorSelected: string | undefined;
+  setSearchText: Dispatch<SetStateAction<string | undefined>>;
+  searchText: string | undefined;
+  isLoading: boolean;
 }
 
 export const ProductsFilter = ({
   colorsFilterOptions,
   sizesFilterOptions,
+  colorSelected,
+  searchText,
+  setColorSelected,
+  setSearchText,
+  setSizeSelected,
+  sizeSelected,
+  isLoading,
 }: ProductsFilterProps) => {
-  const [sizeSelected, setSizeSelected] = useState<string | undefined>();
-  const [colorSelected, setColorSelected] = useState<string | undefined>();
-  const [searchText, setSearchText] = useState<string | undefined>();
-
-  const onSelectColor = (color: string) => {
-    setColorSelected(color);
-  };
-
-  const onSelectSize = (size: string) => {
-    setSizeSelected(size);
-  };
-
   return (
     <section className="flex flex-col md:flex-row md:items-end justify-between border-b items-start">
       <div className="mt-6 flex flex-col gap-4 mb-3 flex-1">
@@ -37,7 +39,7 @@ export const ProductsFilter = ({
             {colorsFilterOptions?.map((color, index) => (
               <ProductColorTag
                 color={color}
-                selectColor={onSelectColor}
+                selectColor={setColorSelected}
                 colorSelected={colorSelected}
                 key={index}
               />
@@ -51,7 +53,7 @@ export const ProductsFilter = ({
             {sizesFilterOptions?.map((size, index) => (
               <ProductSizeTag
                 size={size}
-                selectSize={onSelectSize}
+                selectSize={setSizeSelected}
                 sizeSelected={sizeSelected}
                 sizeLarge
                 key={index}
