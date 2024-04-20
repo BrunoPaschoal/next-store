@@ -42,8 +42,7 @@ export const FeaturedProductsView = ({
         title: searchText,
       });
       setProducts(productsResponse);
-    } catch (error) {
-      console.log(error);
+    } catch (_) {
     } finally {
       setIsLoading(false);
     }

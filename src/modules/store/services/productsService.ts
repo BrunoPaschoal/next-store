@@ -1,6 +1,5 @@
+import { HttpClient } from "@/clients/HttpClient";
 import axios from "axios";
-import next from "next";
-import { revalidatePath } from "next/cache";
 
 export type FilterProductsOptionsReponse = {
   sizeOptions: string[];
@@ -24,6 +23,7 @@ export type Filters = {
 };
 
 export const productsService = () => {
+  const { axiosClient } = HttpClient();
   const getProducts = async (filters: Filters = {}): Promise<Product[]> => {
     const params = new URLSearchParams();
 
@@ -31,20 +31,23 @@ export const productsService = () => {
     if (filters.size) params.append("size", filters.size.toString());
     if (filters.title) params.append("title", filters.title);
 
-    const productsResponse = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/products?${params.toString()}`
-    );
-
-    const { data } = (await productsResponse.json()) as { data: Product[] };
+    const {
+      body: { data },
+    } = await axiosClient.request<{ data: Product[] }>({
+      method: "GET",
+      url: `/products?${params.toString()}`,
+    });
 
     return data;
   };
 
   const getProductById = async (id: number): Promise<Product | undefined> => {
-    const productResponse = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/products?id=${id}`
-    );
-    const { data } = (await productResponse.json()) as { data: Product };
+    const {
+      body: { data },
+    } = await axiosClient.request<{ data: Product }>({
+      url: `/products?id=${id}`,
+      method: "GET",
+    });
 
     return data;
   };

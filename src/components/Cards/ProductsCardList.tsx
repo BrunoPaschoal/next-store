@@ -16,7 +16,6 @@ export const ProductsCardsList = ({
   isLoading,
   onClickProduct,
 }: ProductsCardsListProps) => {
-  console.log(isLoading);
   return (
     <>
       {!!productsList?.length && !isLoading && (
